@@ -1,3 +1,6 @@
+pip install requests
+pip install python-dotenv
+
 import requests
 import json
 import time
@@ -6,9 +9,17 @@ import os
 #to create the path if not exists
 if not os.path.exists('data'):
   os.makedirs("data")
+import os
+import requests
+from dotenv import load_dotenv
 
-url1 = "https://hacker-news.firebaseio.com/v0/topstories.json"
-headers = {"User-Agent": "TrendPulse/1.0"}
+# Load the variables from .env
+load_dotenv()
+
+# Fetch the URL from the environment
+url1 = os.getenv("HN_TOP_STORIES_URL")
+url2 = os.getenv("HN_ITEM_BASE_URL")
+
 categories = {
     "technology": ["ai", "software", "tech", "code", "computer", "data", "cloud", "api", "gpu", "llm"],
     "worldnews": ["war", "government", "country", "president", "election", "climate", "attack", "global", "police"],
